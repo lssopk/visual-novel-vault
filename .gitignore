@@ -1,0 +1,9 @@
+.env
+*.sqlite3
+*.db
+__pycache__/
+*.pyc
+.DS_Store
+*.zip
+local-data/
+backups/

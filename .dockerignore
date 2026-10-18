@@ -1,0 +1,12 @@
+.git
+.gitignore
+.env
+*.sqlite3
+*.db
+__pycache__
+*.pyc
+*.zip
+.vscode
+.idea
+tests
+docs

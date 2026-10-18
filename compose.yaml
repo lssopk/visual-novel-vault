@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    image: visual-novel-vault:latest
+    container_name: visual-novel-vault
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6099:6099"
+    environment:
+      PORT: "6099"
+      DB_PATH: /data/vault.sqlite3
+      PUBLIC_HTTPS: "${PUBLIC_HTTPS:-0}"
+    volumes:
+      - vault_data:/data
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    pids_limit: 120
+    mem_limit: 256m
+volumes:
+  vault_data:
