@@ -24,6 +24,17 @@ chmod +x deploy.sh
 
 HTTPS 配好后，可在 `.env` 加入 `PUBLIC_HTTPS=1` 并重新运行 `./deploy.sh`，启用 Secure 会话 Cookie。**若仍通过明文 HTTP 直接登录，浏览器将不会发送 Secure Cookie。**
 
+## AI 自助操作文档（给 Codex / AI 阅读）
+
+**以后只需要提供三样：HTTPS 网站地址、单独生成的 API Token、[AI 操作手册](docs/AI_OPERATIONS.md)。** AI 会按文档自行检查接口、查找游戏与章节、避免重复，并按已玩进度写入个人游玩记录。
+
+- **完整 AI 指南**：[docs/AI_OPERATIONS.md](docs/AI_OPERATIONS.md)
+- **给 Codex 自动读取的仓库说明**：[AGENTS.md](AGENTS.md)
+- **网站上可直接访问的 AI 文档入口**：`https://你的域名/ai-guide.txt`（重新部署后生效）
+- **OpenAPI**：`https://你的域名/api/v1/openapi.json`
+
+只通过安全的 Secrets 注入 Token，**不得**放进 GitHub 或公开链接。请使用 HTTPS，禁止 AI 自动解锁章节或导入未游玩剧情。
+
 ## Codex API
 
 ```bash
