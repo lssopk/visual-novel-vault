@@ -1,5 +1,7 @@
 # Codex 云端写入接口接入
 
+> **推荐 AI 首先阅读：[AI 操作手册](AI_OPERATIONS.md)**。其中包含完整字段、查重规范、人物关系、推理档案、错误处理及严格的防剧透规则。本页保留为简明示例。
+
 ## 接入边界
 
 这是一套**通用 HTTP REST API**，不是已自动连接到 OpenAI Codex 的内置插件。只有你在 Codex 的运行环境配置好 HTTPS URL 和 API Token 后，Codex 才能调用。任何支持 HTTPS 的自动化程序都可以使用同一接口。
