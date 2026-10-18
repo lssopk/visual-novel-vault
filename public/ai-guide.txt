@@ -1,0 +1,17 @@
+幕间 · 个人视觉小说调查档案馆 — AI 接入指南
+
+你需要三个输入：
+1. 当前网站根地址（推荐 HTTPS），例如 https://novel.example.com
+2. 用户通过安全密钥配置提供的 API Token（环境变量 VAULT_API_TOKEN）
+3. 完整操作文档：
+   https://github.com/lssopk/visual-novel-vault/blob/main/docs/AI_OPERATIONS.md
+   https://raw.githubusercontent.com/lssopk/visual-novel-vault/main/docs/AI_OPERATIONS.md
+
+AI 请先阅读以上完整文档，再操作：
+- GET /api/v1/health （无认证）
+- GET /api/v1/openapi.json （OpenAPI 3.1，无认证）
+- GET /api/v1/auth/me （Bearer Token）
+- 授权后的数据 REST API，具体路径、字段及防剧透规则见完整文档。
+
+不得输出密钥，不得主动解锁未通关章节，不得引入剧透；先查重再写。
+AI 需要有网络请求能力，单纯阅读本文不会自动建立连接。
