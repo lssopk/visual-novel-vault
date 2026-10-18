@@ -54,8 +54,15 @@ if [[ $healthy -ne 1 ]]; then
   exit 1
 fi
 
-# 只在用户明确选择公网绑定时开启已启用的系统防火墙端口。
-if [[ "${BIND_ADDR:-0.0.0.0}" == "0.0.0.0" ]]; then
+# 读取 Docker 实际的端口绑定，确保 .env 中的 BIND_ADDR 设置也生效。
+published_endpoint="$(docker compose port app 6099 2>/dev/null || true)"
+public_binding=1
+case "$published_endpoint" in
+  127.0.0.1:*|'[::1]':*|::1:*) public_binding=0 ;;
+esac
+
+# 仅公网绑定时打开系统防火墙端口。
+if [[ "$public_binding" -eq 1 ]]; then
   if command -v ufw >/dev/null 2>&1 && ufw status 2>/dev/null | grep -qi '^Status: active'; then
     if ufw allow 6099/tcp; then
       echo '已在 UFW 中允许 TCP 6099。'
@@ -72,7 +79,7 @@ if [[ "${BIND_ADDR:-0.0.0.0}" == "0.0.0.0" ]]; then
 fi
 
 printf '\n部署成功！本机检测：http://127.0.0.1:6099/api/v1/health\n'
-if [[ "${BIND_ADDR:-0.0.0.0}" == "0.0.0.0" ]]; then
+if [[ "$public_binding" -eq 1 ]]; then
   printf '公网访问：http://<VPS公网IPv4>:6099\n'
   printf '如果外网仍无法访问，检查云服务商安全组、防火墙（TCP 6099）或 VPS 的自定义 nftables/iptables 规则。\n'
 fi
