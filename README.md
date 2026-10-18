@@ -76,3 +76,13 @@ git pull --ff-only
 ```
 
 数据保存在独立 Docker Volume 中，代码更新不会清空数据库。
+
+
+## 完全卸载（永久清除）
+
+```bash
+cd ~/visual-novel-vault
+bash ./uninstall.sh --purge
+```
+
+按提示输入 **`DELETE-VISUAL-NOVEL`**。脚本会停止并删除本项目 Docker 容器、镜像、专用 Docker volume（包括全部游戏 SQLite 数据库、AI Token、管理密码）及项目源文件目录。**无法撤销，请先备份。** 不会删除其他 Docker 项目、全局 Docker 安装、GitHub 仓库或外部备份。卸载后请自行清理反向代理和防火墙 TCP 6099 规则。
