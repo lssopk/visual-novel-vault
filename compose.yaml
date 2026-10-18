@@ -5,7 +5,8 @@ services:
     container_name: visual-novel-vault
     restart: unless-stopped
     ports:
-      - "127.0.0.1:6099:6099"
+      # 默认允许通过 VPS 公网 IP:6099 访问；仅本机访问可设置 BIND_ADDR=127.0.0.1
+      - "${BIND_ADDR:-0.0.0.0}:6099:6099"
     environment:
       PORT: "6099"
       DB_PATH: /data/vault.sqlite3
