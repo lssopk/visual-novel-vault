@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-REPO_URL="${REPO_URL:-git@github.com:lssopk/visual-novel-vault.git}"
+REPO_URL="${REPO_URL:-https://github.com/lssopk/visual-novel-vault.git}"
 DEST="${DEST:-$HOME/visual-novel-vault}"
 if ! command -v git >/dev/null; then echo '需要先安装 git'; exit 1;fi
 if [[ -d "$DEST/.git" ]]; then
